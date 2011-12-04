@@ -1,0 +1,35 @@
+scln
+----
+
+Embedded devices are all around us and mesh networking is a hot research topic
+right now.  When devices want to communicate with one another, their
+communication is often unencrypted readable.  Or, end-to-end security is used,
+so that if one of the two devices is compromised, communication between the two
+can be decrypted.  This is especially a problem for embedded devices because it
+is easy for an attacker to purchase a device and take it apart to extract
+secret keys in the device (and which are all too often the same among all of
+those devices that the manufacturer produces).  scln is the beginning of what
+could be a solution to this problem.  It is essentially a miniature onion
+router protocol; it can't do everything that a true onion routing protocol can,
+but it can mitigate a lot of the security concerns that arise in a network of
+embedded devices.
+
+The test hardware that it is designed for is only for the purposes of
+demonstration.  Essentially, a bunch of AVR microcontrollers are connected to
+one another over I2C (Atmel refers to the protocol as TWI due to trademarking
+issues from Philips) to form a basic network.  Certain micros are set up to act
+as relays while others are set up to act as communication devices.  When one
+device wants to talk to another, it generates an onion and a reply onion and
+passes the message through the network.  At each relay reception, the onion is
+unpeeled a bit and passed to the next relay.  The system is designed to be as
+stateless as possible.
+
+The obvious security flaw in this demonstration is that the devices can all
+"hear" communication from all of the other devices, so if any relay is
+compromised, it can listen to all of the other network chatter.  But, in a real
+environment, devices cannot "hear" every other device.  This demonstration
+setup is intended to show the operability of scln.  scln can then be installed
+onto a mesh network, whereby the aforementioned security flaw no longer exists.
+
+fw/ contains firmware for the AVR microcontrollers
+sw/ contains software used to interact with the network

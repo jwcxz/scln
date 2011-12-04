@@ -1,0 +1,9 @@
+scln
+----
+
+AVR firmware code
+    bootloader/ - bootloader firmware
+    lib/        - common files used by AVR firmware
+    testleds/   - test demonstrating computer control
+    testi2c/    - demo of i2c communication
+    scln/       - scln firmware

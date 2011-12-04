@@ -1,0 +1,6 @@
+scln
+----
+
+Software
+    bootload/   - software for using the bootloader
+    comm/       - software for communicating with the network
