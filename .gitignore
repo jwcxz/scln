@@ -1,0 +1,7 @@
+cscope.out
+*.pyc
+*.hex
+*.out
+*.map
+*.lst
+*.o
