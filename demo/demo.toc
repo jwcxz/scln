@@ -1,0 +1,6 @@
+\beamer@endinputifotherversion {3.10pt}
+\beamer@sectionintoc {1}{Introduction}{2}{0}{1}
+\beamer@sectionintoc {2}{Channel Emulation}{3}{0}{2}
+\beamer@sectionintoc {3}{Previous Work}{21}{0}{3}
+\beamer@sectionintoc {4}{Proposed Implementation}{35}{0}{4}
+\beamer@sectionintoc {5}{Conclusion}{47}{0}{5}
