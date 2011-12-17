@@ -31,5 +31,57 @@ environment, devices cannot "hear" every other device.  This demonstration
 setup is intended to show the operability of scln.  scln can then be installed
 onto a mesh network, whereby the aforementioned security flaw no longer exists.
 
-fw/ contains firmware for the AVR microcontrollers
-sw/ contains software used to interact with the network
+
+Deliverables
+------------
+
+    fw/ contains firmware for the AVR microcontrollers
+        - a custom-made bootloader allowed me to progrm all of the devices with
+          scln easily
+        - scln/ contains the main code
+        - there are some other basic tests in there
+          
+    sw/ contains software used to interact with the network
+        - the bootloader software allows for programming and modification of
+          the devices
+        - the xfer script allows for sending packets, e.g. via
+            echo "[hex] [hex] [hex]..." | xfer.py
+
+
+Explanation of Operation
+------------------------
+
+    A relatively simple circuit containing a network of ATMEGA168's is set up.
+    The SDA and SCL lines are connected between the devices.  Port B can be
+    connected to LEDs for debugging.  For the purposes of the demo, one of the
+    devices is designated as the "transmitter" and the other is designated as
+    the "receiver."  The first transmits whatever the computer says to over the
+    UART through the network via onion routing and the second ultimately
+    receives this data and sends it back to the computer for verification.
+    
+    In between the transmitter and the receiver are a series of nodes.  These
+    nodes unpeel the onion given to them and send the result to the next node
+    in the circuit.
+    
+    The basic framework defined by scln can be easily extended to support
+    complicated implementations of onion routing.  Unfortunately, I didn't have
+    as much time as I thought I would to fill out the features I wanted to.
+    
+    Unfortunately, because I wasn't good about committing successful attempts,
+    the communications network began to fail after a series of changes and
+    hasn't run since then.  I'm thoroughly confused as to why it is no longer
+    working.
+
+
+Limitations
+-----------
+
+    Due to some frustrating bugs, I wasn't able to get RSA up and running.  I
+    was looking to use AVRCryptoLib (http://www.emsign.nl/, source located in
+    ext/), but didn't have enough time to look into the considerations
+    involving dealing with how the packet length would change.  So, I used a
+    simple XOR key and kept all keys in flash (normally, we would want to store
+    private keys in the internal EEPROM or somewhere unique).  A cool way to
+    randomize the circuit forming would be to read the lowest bit from the ADC
+    on an open input line a few times.  I didn't get around to handling reply
+    onions.

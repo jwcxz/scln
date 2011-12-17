@@ -46,7 +46,6 @@ uint8_t uart_data_rdy(void) {
 	return ( uart_rxbuf_count );
 }
 
-/* XXX: enable with TX
 void uart_tx(uint8_t data) {
 	while ( uart_txbuf_count >= UART_TX_BUFSZ );
 
@@ -59,7 +58,6 @@ void uart_tx(uint8_t data) {
 
 	_ON(UCSR0B,UDRIE0);
 }
-*/
 
 /* INTERRUPT VECTORS */
 ISR(USART_RX_vect) {
@@ -90,12 +88,8 @@ ISR(USART_RX_vect) {
     }
 }
 
-/* XXX: enable with TX
 ISR(USART_TX_vect) {
 	if ( uart_txbuf_count > 0 ) {
-        // set rs485 tristate to "write"
-        _ON(UARTWR_PRT, UARTWR_PIN);
-
 		UDR0 = *uart_txbuf_optr;
 		uart_txbuf_count--;
 
@@ -106,4 +100,3 @@ ISR(USART_TX_vect) {
 		_OFF(UCSR0B, UDRIE0);
 	}
 }
-*/

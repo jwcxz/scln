@@ -3,4 +3,4 @@ scln
 
 Software
     bootload/   - software for using the bootloader
-    comm/       - software for communicating with the network
+    xfer.py     - simple method for transfering a few bytes of data

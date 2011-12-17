@@ -1,9 +1,7 @@
 #!/bin/sh
 
-cd `dirname $0`
-
 echo "Press ^C to stop"
-./bootloader.py -n
+`dirname $0`/bootloader.py -P /dev/ttyS0 -n
 
 echo "Programming..."
-./bootloader.py -p $@
+`dirname $0`/bootloader.py -P /dev/ttyS0 -p $@
